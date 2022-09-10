@@ -1,5 +1,7 @@
 node{
+
 def mavenHome = tool name: "maven3.8.6"	
+
 properties([buildDiscarder(logRotator(artifactDaysToKeepStr: '', artifactNumToKeepStr: '5', daysToKeepStr: '', numToKeepStr: '5')), [$class: 'JobLocalConfiguration', changeReasonComment: ''], pipelineTriggers([pollSCM('* * * * *')])])
 	    
 stage('CheckOut Code'){
@@ -23,4 +25,5 @@ sshagent(['f1972481-b06a-4a72-b018-3f744b489b5d']) {
 sh "scp -o StrictHostKeyChecking=no target/maven-web-application.war ec2-user@172.31.46.177:/opt/apache-tomcat-9.0.65/webapps/"
 }
 }
+
 }
